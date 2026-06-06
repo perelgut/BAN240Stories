@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAN240 Week 1 - Storybook</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+  }
+
+  #app {
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    color: #222;
+  }
+
+  a.back-link {
+    padding: 10px 16px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+  }
+
+  a.back-link:hover {
+    background: #0056b3;
+  }
+
+  #container {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+    overflow: hidden;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: clamp(2rem, 6vw, 5rem);
+    color: rgba(0,0,0,0.55);
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+    padding: 12px;
+  }
+
+  #leftArrow { left: 16px; }
+  #rightArrow { right: 16px; }
+
+  .arrow.hidden {
+    display: none;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    color: #444;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 600px) {
+    #container {
+      min-height: 60vh;
+    }
+
+    .arrow {
+      font-size: clamp(1.75rem, 10vw, 3rem);
+    }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>BAN240 Week 1</h1>
+    <a href="../index.html" class="back-link">← Back to Books</a>
+  </header>
+
+  <div id="container">
+    <img id="pageImage" src="" alt="Story page">
+    <div id="leftArrow" class="arrow hidden">←</div>
+    <div id="rightArrow" class="arrow hidden">→</div>
+  </div>
+
+  <div class="footer">
+    <div id="pageCounter">Page 0 / 0</div>
+    <div>Swipe or click arrows to navigate.</div>
+  </div>
+</div>
+
+<script>
+  const pages = [
+    "BAN240 Week 1 cover.png",
+    "BAN240 Week 1 page 1.png",
+    "BAN240 Week 1 page 2.png",
+    "BAN240 Week 1 page 3.png",
+    "BAN240 Week 1 page 4.png",
+    "Sensei at work.png"
+  ];
+
+  let currentPage = 0;
+  const pageImage = document.getElementById("pageImage");
+  const leftArrow = document.getElementById("leftArrow");
+  const rightArrow = document.getElementById("rightArrow");
+  const pageCounter = document.getElementById("pageCounter");
+
+  function updatePage() {
+    pageImage.style.opacity = 0;
+    pageImage.src = pages[currentPage];
+    pageImage.alt = `Page ${currentPage + 1}`;
+    pageImage.onload = () => {
+      pageImage.style.opacity = 1;
+    };
+    leftArrow.classList.toggle("hidden", currentPage === 0);
+    rightArrow.classList.toggle("hidden", currentPage === pages.length - 1);
+    pageCounter.textContent = `Page ${currentPage + 1} / ${pages.length}`;
+  }
+
+  function changePage(delta) {
+    const nextPage = currentPage + delta;
+    if (nextPage >= 0 && nextPage < pages.length) {
+      currentPage = nextPage;
+      updatePage();
+    }
+  }
+
+  rightArrow.addEventListener("click", () => changePage(1));
+  leftArrow.addEventListener("click", () => changePage(-1));
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  pageImage.addEventListener("touchstart", e => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  pageImage.addEventListener("touchend", e => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchEndX < touchStartX - 50) {
+      changePage(1);
+    }
+    if (touchEndX > touchStartX + 50) {
+      changePage(-1);
+    }
+  });
+
+  updatePage();
+</script>
+</body>
+</html>
