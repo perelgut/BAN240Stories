@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marisol Santos | BAN240 Stories</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      color: #f8fafc;
+      background: #081121;
+      font-family: Inter, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 1rem; }
+    .card {
+      width: min(900px, 100%);
+      display: grid;
+      grid-template-rows: auto 1fr auto auto;
+      gap: 0;
+      border-radius: 26px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.22);
+    }
+    .top-banner {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 1rem 1.4rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.35em;
+      border-bottom: 4px solid #2563eb;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      padding: 1.4rem;
+      background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+    }
+    .player-name {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      letter-spacing: -0.06em;
+      color: #0f172a;
+      line-height: 1;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.85rem;
+      margin-top: 1.25rem;
+    }
+    .info-card {
+      background: #0f172a;
+      color: #ffffff;
+      border-radius: 18px;
+      padding: 1rem 1rem;
+      display: grid;
+      gap: 0.2rem;
+    }
+    .label {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.78;
+    }
+    .value {
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .photo {
+      background: #dbeafe;
+      border-radius: 22px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 320px;
+    }
+    .photo img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+    .highlights {
+      padding: 1.35rem 1.4rem 1.5rem;
+      background: #ffffff;
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
+      display: grid;
+      gap: 0.85rem;
+    }
+    .highlights h2 {
+      margin: 0;
+      font-size: 0.95rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #2563eb;
+    }
+    .highlights p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #1f2937;
+    }
+    .card-footer {
+      padding: 1rem 1.5rem 1.5rem;
+      background: #0f172a;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .profile-link,
+    .return-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      background: #2563eb;
+      padding: 0.85rem 1.1rem;
+      border-radius: 999px;
+    }
+    .profile-link:hover,
+    .return-link:hover { opacity: 0.95; }
+    @media (max-width: 720px) {
+      .hero { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; }
+      .photo { min-height: 260px; }
+    }
+  </style>
+</head>
+<body>
+  <article class="card">
+    <div class="top-banner">Manga Character</div>
+    <div class="hero">
+      <div>
+        <h1 class="player-name">Marisol Santos</h1>
+        <div class="info-grid">
+          <div class="info-card">
+            <span class="label">Team</span>
+            <span class="value">BAN240 Stories</span>
+          </div>
+          <div class="info-card">
+            <span class="label">Birthday</span>
+            <span class="value">Age: 21</span>
+          </div>
+          <div class="info-card">
+            <span class="label">Hometown</span>
+            <span class="value">Manila to a stable future</span>
+          </div>
+        </div>
+      </div>
+      <div class="photo">
+        <img src="Marisol Santos image.png" alt="Marisol Santos">
+      </div>
+    </div>
+    <div class="highlights">
+      <h2>Highlights</h2>
+      <p>Mari is the person who checks on everyone and is not checked on nearly enough. This is partly because she does not invite it — she deflects personal questions with warm efficiency, answering with something true but not the thing she was actually asked. Eldest-daughter instinct is structural: she arrives early, she cleans up without being asked, she...</p>
+    </div>
+    <div class="card-footer">
+      <a class="return-link" href="Characters.html">Return to Character Index</a>
+      <a class="profile-link" href="Marisol Santos — BAN240 Manga Character Sheet.docx">See the full profile</a>
+    </div>
+  </article>
+</body>
+</html>

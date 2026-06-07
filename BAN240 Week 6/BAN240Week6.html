@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BAN240 Week 6 - Placeholder</title>
+<title>BAN240 Week 6 - How to Give a Great Presentation</title>
 <style>
   html, body {
     margin: 0;
@@ -13,21 +13,25 @@
     background-color: #f2f2f2;
     font-family: Arial, sans-serif;
   }
+
   body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100%;
   }
+
   #app {
     width: 100%;
     max-width: 1200px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 12px;
     padding: 16px;
     box-sizing: border-box;
   }
+
   header {
     display: flex;
     justify-content: space-between;
@@ -35,11 +39,13 @@
     gap: 16px;
     flex-wrap: wrap;
   }
+
   h1 {
     margin: 0;
     font-size: clamp(1.5rem, 2.5vw, 2.2rem);
     color: #222;
   }
+
   a.back-link {
     padding: 10px 16px;
     background: #007bff;
@@ -49,36 +55,69 @@
     font-size: 0.95rem;
     cursor: pointer;
   }
+
   a.back-link:hover {
     background: #0056b3;
   }
+
   #container {
+    position: relative;
     flex: 1 1 auto;
+    min-height: 0;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     background: white;
     border-radius: 18px;
     box-shadow: 0 16px 40px rgba(0,0,0,0.12);
     overflow: hidden;
-    padding: 24px;
-    gap: 18px;
   }
-  p {
-    margin: 0;
-    color: #444;
-    max-width: 760px;
-    text-align: center;
-  }
+
   img {
     display: block;
-    width: 100%;
     max-width: 100%;
-    max-height: 70vh;
-    height: auto;
-    border-radius: 16px;
+    max-height: 100%;
     object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: clamp(2rem, 6vw, 5rem);
+    color: rgba(0,0,0,0.55);
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+    padding: 12px;
+  }
+
+  #leftArrow { left: 16px; }
+  #rightArrow { right: 16px; }
+
+  .arrow.hidden {
+    display: none;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    color: #444;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 600px) {
+    #container {
+      min-height: 60vh;
+    }
+
+    .arrow {
+      font-size: clamp(1.75rem, 10vw, 3rem);
+    }
   }
 </style>
 </head>
@@ -88,10 +127,83 @@
     <h1>BAN240 Week 6</h1>
     <a href="../index.html" class="back-link">BAN240 Table of Contents</a>
   </header>
+
   <div id="container">
-    <p>This Week 6 page placeholder is now available. Use the link above to return to the BAN240 Table of Contents.</p>
-    <img src="BAN240 Week 6 cover.png" alt="BAN240 Week 6 cover">
+    <img id="pageImage" src="" alt="Story page">
+    <div id="leftArrow" class="arrow hidden">←</div>
+    <div id="rightArrow" class="arrow hidden">→</div>
+  </div>
+
+  <div class="footer">
+    <div id="pageCounter">Page 0 / 0</div>
+    <div>Swipe or click arrows to navigate.</div>
   </div>
 </div>
+
+<script>
+  const pages = [
+    "BAN240 Week 6 cover.png",
+    "BAN240 Week 6 page 01.png",
+    "BAN240 Week 6 page 02.png",
+    "BAN240 Week 6 page 03.png",
+    "BAN240 Week 6 page 04.png",
+    "BAN240 Week 6 page 05.png",
+    "BAN240 Week 6 page 06.png",
+    "BAN240 Week 6 page 07.png",
+    "BAN240 Week 6 page 08.png",
+    "BAN240 Week 6 page 09.png",
+    "BAN240 Week 6 page 10.png",
+    "BAN240 Week 6 page 11.png",
+    "BAN240 Week 6 page 12.png"
+  ];
+
+  let currentPage = 0;
+  const pageImage = document.getElementById("pageImage");
+  const leftArrow = document.getElementById("leftArrow");
+  const rightArrow = document.getElementById("rightArrow");
+  const pageCounter = document.getElementById("pageCounter");
+
+  function updatePage() {
+    pageImage.style.opacity = 0;
+    pageImage.src = pages[currentPage];
+    pageImage.alt = `Page ${currentPage + 1}`;
+    pageImage.onload = () => {
+      pageImage.style.opacity = 1;
+    };
+    leftArrow.classList.toggle("hidden", currentPage === 0);
+    rightArrow.classList.toggle("hidden", currentPage === pages.length - 1);
+    pageCounter.textContent = `Page ${currentPage + 1} / ${pages.length}`;
+  }
+
+  function changePage(delta) {
+    const nextPage = currentPage + delta;
+    if (nextPage >= 0 && nextPage < pages.length) {
+      currentPage = nextPage;
+      updatePage();
+    }
+  }
+
+  rightArrow.addEventListener("click", () => changePage(1));
+  leftArrow.addEventListener("click", () => changePage(-1));
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  pageImage.addEventListener("touchstart", e => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  pageImage.addEventListener("touchend", e => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchEndX < touchStartX - 50) {
+      changePage(1);
+    }
+    if (touchEndX > touchStartX + 50) {
+      changePage(-1);
+    }
+  });
+
+  updatePage();
+</script>
 </body>
 </html>

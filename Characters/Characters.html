@@ -3,66 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Characters | BAN240 Manga</title>
+  <title>Characters | BAN240 Stories</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #0f172a;
       color: #f8fafc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       min-height: 100vh;
       padding: 1.5rem;
     }
-    .container {
-      text-align: center;
-      max-width: 900px;
-      width: 100%;
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    h1 {
-      margin-bottom: 1rem;
-      font-size: 2rem;
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
     }
-    p {
-      margin: 0 0 1.5rem;
-      color: #94a3b8;
+    .header h1 {
+      margin: 0;
+      font-size: clamp(2rem, 3vw, 2.8rem);
     }
-    .image-card {
-      display: inline-block;
-      background: #14263c;
-      border: 1px solid rgba(148, 163, 184, 0.18);
-      border-radius: 20px;
-      padding: 1rem;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-    }
-    .image-card img {
-      width: 100%;
-      max-width: 100%;
-      max-height: 70vh;
-      height: auto;
-      border-radius: 16px;
-      display: block;
-      object-fit: contain;
-    }
-    .back-link {
-      display: inline-block;
-      margin-top: 1.5rem;
+    .nav-link {
       color: #7dd3fc;
       text-decoration: none;
       font-weight: 600;
     }
+    .top-card {
+      display: grid;
+      place-items: center;
+      margin: 0 auto 2rem;
+      max-width: 280px;
+      text-align: center;
+    }
+    .top-card a {
+      display: block;
+      width: 180px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 2px solid rgba(125, 211, 252, 0.45);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+    .top-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .top-card p {
+      margin: 0.75rem 0 0;
+      font-size: 1rem;
+      color: #e2e8f0;
+      font-weight: 700;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.25rem;
+    }
+    .card {
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      border-radius: 22px;
+      overflow: hidden;
+      text-align: center;
+      padding: 1rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #60a5fa;
+    }
+    .card a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      max-height: 160px;
+      object-fit: contain;
+      border-radius: 18px;
+      display: block;
+    }
+    .card p {
+      margin: 0.85rem 0 0;
+      font-size: 0.98rem;
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+    @media (max-width: 640px) {
+      .top-card {
+        width: 100%;
+        max-width: 260px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Characters Placeholder</h1>
-    <p>This placeholder page displays the character image from the Characters folder.</p>
-    <div class="image-card">
-      <img src="Sensei at work.png" alt="Sensei at work">
+  <div class="page">
+    <div class="header">
+      <h1>Characters</h1>
+      <a class="nav-link" href="../index.html">BAN240 Table of Contents</a>
     </div>
-    <a class="back-link" href="../index.html">BAN240 Table of Contents</a>
+    <div class="top-card">
+      <a href="Stephen-sensei.html" aria-label="Stephen-sensei character page">
+        <img src="Stephen-sensei image.png" alt="Stephen-sensei">
+      </a>
+      <p>Stephen-sensei</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <a href="Ada.html" aria-label="Ada character page">
+          <img src="Ada image.png" alt="Ada">
+          <p>Ada</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="Amir.html" aria-label="Amir character page">
+          <img src="Amir image.png" alt="Amir">
+          <p>Amir</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="Arjun.html" aria-label="Arjun character page">
+          <img src="Arjun image.png" alt="Arjun">
+          <p>Arjun</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="Céleste.html" aria-label="Céleste character page">
+          <img src="Céleste image.png" alt="Céleste">
+          <p>Céleste</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="Divya.html" aria-label="Divya character page">
+          <img src="Divya image.png" alt="Divya">
+          <p>Divya</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="Emeka.html" aria-label="Emeka character page">
+          <img src="Emeka image.png" alt="Emeka">
+          <p>Emeka</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="Hassan.html" aria-label="Hassan character page">
+          <img src="Hassan image.png" alt="Hassan">
+          <p>Hassan</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="Kim Sae-byeol.html" aria-label="Kim Sae-byeol character page">
+          <img src="Kim Sae-byeol image.png" alt="Kim Sae-byeol">
+          <p>Kim Sae-byeol</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="Marisol Santos.html" aria-label="Marisol Santos character page">
+          <img src="Marisol Santos image.png" alt="Marisol Santos">
+          <p>Marisol Santos</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="Park Jae-won.html" aria-label="Park Jae-won character page">
+          <img src="Park Jae-won image.png" alt="Park Jae-won">
+          <p>Park Jae-won</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="Priya.html" aria-label="Priya character page">
+          <img src="Priya image.png" alt="Priya">
+          <p>Priya</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="Raj.html" aria-label="Raj character page">
+          <img src="Raj image.png" alt="Raj">
+          <p>Raj</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="Sofia.html" aria-label="Sofia character page">
+          <img src="Sofia image.png" alt="Sofia">
+          <p>Sofia</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="Tunde.html" aria-label="Tunde character page">
+          <img src="Tunde image.png" alt="Tunde">
+          <p>Tunde</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="Yuna.html" aria-label="Yuna character page">
+          <img src="Yuna image.png" alt="Yuna">
+          <p>Yuna</p>
+        </a>
+      </div>
+      <div class="card">
+        <a href="Zara.html" aria-label="Zara character page">
+          <img src="Zara image.png" alt="Zara">
+          <p>Zara</p>
+        </a>
+      </div>
+    </div>
   </div>
 </body>
 </html>
